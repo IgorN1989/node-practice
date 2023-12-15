@@ -12,7 +12,7 @@ export const getAllMovies = async () => {
 };
 
 export const getMovieById = async (id) => {
-  const movies = getAllMovies();
+  const movies = await getAllMovies();
   const result = movies.find((movie) => movie.id === id);
   return result || null;
 };
