@@ -1,5 +1,6 @@
 const createError = require("http-errors");
 const express = require("express");
+const cors = require("cors");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
@@ -8,6 +9,13 @@ const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 
 const app = express();
+
+require("dotenv").config();
+
+const morgan = require("morgan");
+
+process.env.SECRET_KEY;
+process.env.NODE_ENV;
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -37,5 +45,15 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
+
+app.use(cors());
+app.get("/", (req, res, next) => {
+  res.json({ message: "CORS is activated" });
+});
+app.listen(3000, function () {
+  console.log("CORS-enabled web server listening on port 3000");
+});
+
+app.use(logger("dev"));
 
 module.exports = app;
