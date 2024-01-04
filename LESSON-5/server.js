@@ -1,11 +1,8 @@
 import mongoose from "mongoose";
-
 import app from "./app.js";
+// import { DB_HOST } from "./config.js";
 
-// VQQQLHPjxlxuaZ7Y
-
-const DB_HOST =
-  "mongodb+srv://IgorN1989:VQQQLHPjxlxuaZ7Y@cluster0.btkirmo.mongodb.net/my-movies?retryWrites=true&w=majority";
+const { DB_HOST, PORT = 3000 } = process.env;
 
 mongoose
   .connect(DB_HOST)
