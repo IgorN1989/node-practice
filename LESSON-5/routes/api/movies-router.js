@@ -15,22 +15,22 @@ const moviesRouter = express.Router();
 
 moviesRouter.get("/", moviesController.getAll);
 
-moviesRouter.get("/:id", moviesController.getById);
+// moviesRouter.get("/:id", moviesController.getById);
 
-moviesRouter.post(
-  "/",
-  isEmptyBody,
-  validateBody(movieAddSchema),
-  moviesController.add
-);
+// moviesRouter.post(
+//   "/",
+//   isEmptyBody,
+//   validateBody(movieAddSchema),
+//   moviesController.add
+// );
 
-moviesRouter.put(
-  "/:id",
-  isEmptyBody,
-  validateBody(movieUpdateSchema),
-  moviesController.updateById
-);
+// moviesRouter.put(
+//   "/:id",
+//   isEmptyBody,
+//   validateBody(movieUpdateSchema),
+//   moviesController.updateById
+// );
 
-moviesRouter.delete("/:id", moviesController.deleteById);
+// moviesRouter.delete("/:id", moviesController.deleteById);
 
 export default moviesRouter;

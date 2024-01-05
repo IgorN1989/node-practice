@@ -1,21 +1,19 @@
 import express from "express";
 
 import moviesController from "../../controllers/movies-controller.js";
-
-import { isEmptyBody } from "../../middlewares/index.js";
-
+import { isEmptyBody, isValidId } from "../../middlewares/index.js";
 import { validateBody } from "../../decorators/index.js";
-
 import {
   movieAddSchema,
   movieUpdateSchema,
-} from "../../schemas/movie-schemas.js";
+  movieUpdateFavoriteSchema,
+} from "../../models/Movie.js";
 
 const moviesRouter = express.Router();
 
 moviesRouter.get("/", moviesController.getAll);
 
-moviesRouter.get("/:id", moviesController.getById);
+moviesRouter.get("/:id", isValidId, moviesController.getById);
 
 moviesRouter.post(
   "/",
@@ -26,11 +24,20 @@ moviesRouter.post(
 
 moviesRouter.put(
   "/:id",
+  isValidId,
   isEmptyBody,
   validateBody(movieUpdateSchema),
   moviesController.updateById
 );
 
-moviesRouter.delete("/:id", moviesController.deleteById);
+moviesRouter.patch(
+  "/:id/favorite",
+  isValidId,
+  isEmptyBody,
+  validateBody(movieUpdateFavoriteSchema),
+  moviesController.updateById
+);
+
+moviesRouter.delete("/:id", isValidId, moviesController.deleteById);
 
 export default moviesRouter;
