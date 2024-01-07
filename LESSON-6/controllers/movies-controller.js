@@ -1,8 +1,9 @@
 import Movie from "../models/Movie.js";
 
 import { HttpError } from "../helpers/index.js";
-
 import { ctrlWrapper } from "../decorators/index.js";
+
+// ================================================================
 
 const getAll = async (req, res) => {
   const result = await Movie.find({});

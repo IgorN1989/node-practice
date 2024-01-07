@@ -9,6 +9,8 @@ import {
   movieUpdateFavoriteSchema,
 } from "../../models/Movie.js";
 
+// ================================================================
+
 const moviesRouter = express.Router();
 
 moviesRouter.get("/", moviesController.getAll);
